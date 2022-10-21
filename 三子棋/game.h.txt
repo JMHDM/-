@@ -1,0 +1,16 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define ROW 3
+#define COL 3
+//声明
+void initboard(char board[ROW][COL], int row, int col);
+void displayboard(char board[ROW][COL], int row, int col);
+void blayemove(char board[ROW][COL], int row, int col);
+void compultermove(char board[ROW][COL], int row, int col);
+//返回*玩家赢
+//返回#电脑赢
+//返回q平局
+//返回c继续//谁都没赢继续
+char iswin(char board[ROW][COL], int row, int col);

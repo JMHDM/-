@@ -1,0 +1,71 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include"game2.h"
+void meau() {
+	printf("########################\n");
+	printf("###1.play  0.exit#######\n");
+	printf("########################\n");
+}
+void game() {
+	int ret = 0;
+	//创建数组存放玩家和电脑走出的棋盘信息
+	char board[ROW][COL] = {0};//全部是空格
+	//初始化棋盘
+	initboard(board, ROW, COL);
+	//打印棋盘
+	displayboard(board, ROW, COL);
+	while (1) {
+		//玩家下棋
+		blayemove(board, ROW, COL);
+		displayboard(board, ROW, COL);
+		//判断玩家是否赢
+		ret = iswin(board, ROW, COL);
+		if (ret != 'c') {
+			break;
+		}
+		//电脑下棋
+		compultermove(board, ROW, COL);
+		displayboard(board, ROW, COL);
+		//判断电脑是否赢
+		ret = iswin(board, ROW, COL);
+		if (ret != 'c') {
+			break;
+		}
+	}
+	if (ret == '#') {
+		printf("电脑赢\n");
+	}
+	else if (ret == '*') {
+		printf("玩家赢\n");
+	}
+	else
+	{
+		printf("平局\n");
+	}
+}
+void test() {
+	int input = 0;
+	srand((unsigned int)time(NULL));
+	do {
+		meau();
+		printf("请选择");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			//printf("三子棋\n");
+			game();
+			break;
+		case 0:
+			printf("退出游戏\n");
+			break;
+		default:
+			printf("输入错误，请重新输入");
+			break;
+		}
+	} while (input);
+}
+int main() {
+	test();
+	return 0;
+}
